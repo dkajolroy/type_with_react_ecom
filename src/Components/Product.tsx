@@ -7,8 +7,7 @@ type ProductType = {
   thumbnail: string;
 };
 
-export default function Product(props: { item: ProductType }) {
-  const { item } = props;
+export default function Product({ item }: { item: ProductType }) {
   return (
     <div
       style={{
@@ -31,7 +30,7 @@ export default function Product(props: { item: ProductType }) {
           src={item.thumbnail}
           alt={item.title}
         />
-        <p>{item.price}</p>
+        <p>${item.price}</p>
         <span>{item.title}</span>
       </div>
     </div>
