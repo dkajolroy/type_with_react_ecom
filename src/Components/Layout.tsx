@@ -34,6 +34,7 @@ const Layout: React.FC<ChildrenType> = ({ children }) => {
       <div
         style={{
           background: "lightgray",
+          padding: "50px 0",
         }}
       >
         <Footer footerItems={footerItems} />
