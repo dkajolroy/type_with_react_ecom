@@ -1,13 +1,15 @@
 import React from "react";
 
 type ProductType = {
-  id: number;
-  title: string;
-  price: number;
-  thumbnail: string;
+  item: {
+    id: number;
+    title: string;
+    price: number;
+    thumbnail: string;
+  };
 };
 
-export default function Product({ item }: { item: ProductType }) {
+export default function Product({ item }: ProductType) {
   return (
     <div
       style={{
