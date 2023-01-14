@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import axios from "axios";
+import "./App.css";
+import React, { useEffect, useState } from "react";
+import Product from "./Components/Product";
 
-function App() {
+type Data = {
+  limit: number;
+  products: {
+    id: number;
+    title: string;
+    price: number;
+    thumbnail: string;
+  }[];
+  skip: number;
+  total: number;
+};
+
+export default function App() {
+  const [totalUser, setTotalUser] = useState<Data>();
+  useEffect(() => {
+    const reqUser = async (): Promise<void> => {
+      const { data } = await axios.get(
+        "https://dummyjson.com/products?limit=20&skip=0&select=title,price,thumbnail"
+      );
+      setTotalUser(data);
+    };
+    reqUser();
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        flexWrap: "wrap",
+      }}
+    >
+      {totalUser?.products.map((x, i) => (
+        <Product item={x} key={i} />
+      ))}
     </div>
   );
 }
-
-export default App;
