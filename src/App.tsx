@@ -2,6 +2,7 @@ import axios from "axios";
 import "./App.css";
 import React, { useEffect, useState } from "react";
 import Product from "./Components/Product";
+import Layout from "./Components/Layout";
 
 type Data = {
   limit: number;
@@ -27,16 +28,18 @@ export default function App() {
     reqUser();
   }, []);
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        flexWrap: "wrap",
-      }}
-    >
-      {totalUser?.products.map((x, i) => (
-        <Product item={x} key={i} />
-      ))}
-    </div>
+    <Layout>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+        }}
+      >
+        {totalUser?.products.map((x, i) => (
+          <Product item={x} key={i} />
+        ))}
+      </div>
+    </Layout>
   );
 }
