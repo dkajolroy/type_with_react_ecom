@@ -20,7 +20,7 @@ export default function App() {
   const [totalUser, setTotalUser] = useState<Data>();
   useEffect(() => {
     const reqUser = async (): Promise<void> => {
-      const { data } = await axios.get(
+      const { data }: { data: Data } = await axios.get(
         "https://dummyjson.com/products?limit=20&skip=0&select=title,price,thumbnail"
       );
       setTotalUser(data);
